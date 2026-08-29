@@ -3,754 +3,736 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CreatorSpark Studio - Thumbnails, Websites, Intros | Pakistan</title>
-    <meta name="description" content="CreatorSpark Studio creates high-impact thumbnails, intro videos, landing pages, and professional websites for Pakistani creators and businesses.">
+    <title>CreatorSpark Studio - Professional Digital Content Creation</title>
+    <meta name="description" content="Transform your digital presence with professional YouTube thumbnails, intro videos, landing pages, and websites.">
+    <meta name="keywords" content="thumbnail design, video intro, landing pages, website development, Pakistani creative agency">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="CreatorSpark Studio - Digital Experiences">
-    <meta property="og:description" content="Turn your ideas into extraordinary digital experiences. YouTube thumbnails, intro videos, landing pages, and websites.">
+    <!-- Open Graph Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://creatorspark.studio/og-image.jpg">
+    <meta property="og:title" content="CreatorSpark Studio - Professional Digital Content">
+    <meta property="og:description" content="Transform your digital presence with professional creative services.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
-                extend: {
-                    colors: {
-                        'spark-dark': '#0a0e27',
-                        'spark-charcoal': '#1a1f3a',
-                        'spark-purple': '#7c3aed',
-                        'spark-violet': '#a855f7',
-                        'spark-cyan': '#06b6d4',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                    }
+                colors: {
+                    'spark-dark': '#0a0e27',
+                    'spark-charcoal': '#1a1f3a',
+                    'spark-purple': '#7c3aed',
+                    'spark-violet': '#a855f7',
+                    'spark-cyan': '#06b6d4',
                 }
             }
         }
     </script>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Three.js -->
+    <!-- Three.js for 3D animation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
-    <link rel="stylesheet" href="style.css">
+    <!-- Custom Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--color-spark-dark), var(--color-spark-charcoal));
+            color: #e5e7eb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --color-spark-dark: #0a0e27;
+            --color-spark-charcoal: #1a1f3a;
+            --color-spark-purple: #7c3aed;
+            --color-spark-violet: #a855f7;
+            --color-spark-cyan: #06b6d4;
+        }
+
+        /* Glass Morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.8); }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .glow {
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        /* 3D Scene Container */
+        #canvas-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.8;
+        }
+
+        /* Section Padding */
+        .section {
+            padding: 80px 20px;
+        }
+
+        /* Card Hover */
+        .card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+        }
+
+        /* Image hover effects */
+        .service-image {
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: brightness(0.9);
+        }
+
+        .card:hover .service-image {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* CTA Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #7c3aed;
+            color: #7c3aed;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(124, 58, 237, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        /* FAQ Accordion */
+        .accordion-button {
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            color: #e5e7eb;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            width: 100%;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .accordion-button:hover {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.6);
+        }
+
+        .accordion-button.active {
+            background: rgba(124, 58, 237, 0.3);
+            border-color: #7c3aed;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 0 20px 20px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 10px;
+            line-height: 1.8;
+            color: #d1d5db;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        /* Responsive Images */
+        .responsive-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        /* Review Cards */
+        .review-card {
+            position: relative;
+            padding: 30px;
+            background: rgba(124, 58, 237, 0.05);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: rgba(124, 58, 237, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        /* Loading and Error States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(124, 58, 237, 0.3);
+            border-top-color: #7c3aed;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section {
+                padding: 40px 20px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            h1 {
+                font-size: 32px !important;
+            }
+
+            h2 {
+                font-size: 24px !important;
+            }
+        }
+    </style>
 </head>
-<body class="bg-spark-dark text-white overflow-x-hidden">
-    
+<body>
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
-        <div class="backdrop-blur-md bg-spark-dark/40 border-b border-spark-purple/10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center">
-                <!-- Logo -->
-                <div class="text-xl sm:text-2xl font-bold tracking-tight">
-                    <span class="text-white">CreatorSpark</span>
-                    <span class="text-spark-purple ml-1">Studio</span>
+    <nav class="glass shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl font-black">CreatorSpark</span>
+                    <span class="text-2xl font-black gradient-text">Studio</span>
                 </div>
                 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex gap-8 items-center">
-                    <a href="#home" class="nav-link text-sm font-500 hover:text-spark-cyan transition">Home</a>
-                    <a href="#services" class="nav-link text-sm font-500 hover:text-spark-cyan transition">Services</a>
-                    <a href="#work" class="nav-link text-sm font-500 hover:text-spark-cyan transition">Work</a>
-                    <a href="#pricing" class="nav-link text-sm font-500 hover:text-spark-cyan transition">Pricing</a>
-                    <a href="#reviews" class="nav-link text-sm font-500 hover:text-spark-cyan transition">Reviews</a>
-                    <a href="#contact" class="nav-link text-sm font-500 hover:text-spark-cyan transition">Contact</a>
-                    <a href="#contact" class="px-4 py-2 bg-spark-purple hover:bg-spark-violet text-white rounded-lg text-sm font-600 transition">Start a Project ↗</a>
+                <div class="hidden md:flex gap-8">
+                    <a href="#home" class="text-gray-300 hover:text-spark-purple transition">Home</a>
+                    <a href="#services" class="text-gray-300 hover:text-spark-purple transition">Services</a>
+                    <a href="#work" class="text-gray-300 hover:text-spark-purple transition">Work</a>
+                    <a href="#pricing" class="text-gray-300 hover:text-spark-purple transition">Pricing</a>
+                    <a href="#reviews" class="text-gray-300 hover:text-spark-purple transition">Reviews</a>
+                    <a href="#contact" class="text-gray-300 hover:text-spark-purple transition">Contact</a>
                 </div>
                 
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
+                <button class="btn-primary px-6 py-2 rounded-lg text-white font-semibold">
+                    Start a Project
                 </button>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div class="hidden md:hidden border-t border-spark-purple/10 bg-spark-charcoal/80 backdrop-blur-md" id="mobile-menu">
-                <div class="px-4 py-4 space-y-3">
-                    <a href="#home" class="block py-2 hover:text-spark-cyan transition">Home</a>
-                    <a href="#services" class="block py-2 hover:text-spark-cyan transition">Services</a>
-                    <a href="#work" class="block py-2 hover:text-spark-cyan transition">Work</a>
-                    <a href="#pricing" class="block py-2 hover:text-spark-cyan transition">Pricing</a>
-                    <a href="#reviews" class="block py-2 hover:text-spark-cyan transition">Reviews</a>
-                    <a href="#contact" class="block py-2 hover:text-spark-cyan transition">Contact</a>
-                    <a href="#contact" class="block w-full px-4 py-2 bg-spark-purple hover:bg-spark-violet text-white rounded-lg font-600 text-center transition">Start a Project</a>
-                </div>
             </div>
         </div>
     </nav>
-    
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen pt-20 pb-0 overflow-hidden flex items-center justify-center">
-        <div class="absolute inset-0 bg-gradient-to-b from-spark-purple/5 via-transparent to-transparent"></div>
-        <div class="absolute top-20 left-10 w-72 h-72 bg-spark-purple/10 rounded-full blur-3xl animate-blob"></div>
-        <div class="absolute -bottom-8 right-10 w-80 h-80 bg-spark-cyan/5 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+
+    <!-- Hero Section with Image -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <img 
+            src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80" 
+            alt="Creative workspace background" 
+            class="absolute inset-0 w-full h-full object-cover opacity-20"
+        >
+        <div id="canvas-container"></div>
         
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            
-            <!-- Left Content -->
-            <div class="z-10 space-y-6 sm:space-y-8">
-                <div class="inline-block px-3 py-1 bg-spark-purple/20 border border-spark-purple/40 rounded-full">
-                    <span class="text-spark-cyan text-xs sm:text-sm font-600">✨ Available for new projects</span>
-                </div>
-                
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
-                    MAKE YOUR DIGITAL PRESENCE
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-spark-purple via-spark-violet to-spark-cyan"> IMPOSSIBLE TO IGNORE</span>
-                </h1>
-                
-                <p class="text-base sm:text-lg text-gray-300 leading-relaxed max-w-xl">
-                    CreatorSpark Studio helps creators, businesses and personal brands turn ordinary ideas into extraordinary digital experiences that stick.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="#contact" class="group px-8 py-3 bg-spark-purple hover:bg-spark-violet text-white font-bold rounded-lg transition transform hover:scale-105 inline-flex items-center justify-center gap-2">
-                        Start a Project <span class="group-hover:translate-x-1 transition">↗</span>
-                    </a>
-                    <a href="#work" class="px-8 py-3 border border-spark-purple/40 hover:border-spark-cyan text-white font-bold rounded-lg transition hover:bg-spark-purple/10">
-                        Explore Our Work <span>↓</span>
-                    </a>
-                </div>
-                
-                <div class="pt-4 text-sm text-gray-400">
-                    Thumbnails • Videos • Landing Pages • Websites
-                </div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <div class="mb-8 inline-block px-4 py-2 bg-spark-purple/10 rounded-full border border-spark-purple/30">
+                <span class="text-spark-purple text-sm font-semibold">✨ Available for new projects</span>
             </div>
             
-            <!-- Right 3D Canvas -->
-            <div class="relative h-96 sm:h-[500px] lg:h-[600px]">
-                <canvas id="canvas-3d" class="w-full h-full"></canvas>
-                <div class="absolute inset-0 bg-gradient-to-t from-spark-dark via-transparent to-transparent pointer-events-none"></div>
+            <h1 class="text-5xl sm:text-7xl font-black mb-6 leading-tight">
+                MAKE YOUR DIGITAL PRESENCE
+                <br>
+                <span class="gradient-text">IMPOSSIBLE TO IGNORE</span>
+            </h1>
+            
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+                CreatorSpark Studio helps creators, businesses and personal brands turn ordinary ideas into extraordinary digital experiences that stick.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="btn-primary px-8 py-4 rounded-lg text-white font-bold text-lg">
+                    Start a Project →
+                </button>
+                <button class="btn-secondary px-8 py-4 rounded-lg font-bold text-lg">
+                    Explore Our Work ↓
+                </button>
             </div>
             
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div class="flex flex-col items-center gap-2">
-                <span class="text-xs text-gray-500">Scroll to explore</span>
-                <i class="fas fa-chevron-down text-spark-purple"></i>
-            </div>
+            <p class="text-gray-400 mt-12 text-sm">
+                Thumbnails • Videos • Landing Pages • Websites
+            </p>
         </div>
     </section>
-    
-    <!-- Trust Strip -->
-    <section class="py-8 sm:py-12 border-y border-spark-purple/10 bg-spark-charcoal/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+
+    <!-- Stats Section with Background Image -->
+    <section class="py-20 relative overflow-hidden">
+        <img 
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80" 
+            alt="Team collaboration" 
+            class="absolute inset-0 w-full h-full object-cover opacity-10"
+        >
+        <div class="relative z-10 max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="text-center">
-                    <div class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-spark-purple to-spark-cyan" data-target="50">50+</div>
+                    <div class="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-spark-purple to-spark-cyan" data-target="150">150+</div>
                     <p class="text-xs sm:text-sm text-gray-400 mt-2">Projects Delivered</p>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl sm:text-4xl font-black text-spark-cyan">04</div>
-                    <p class="text-xs sm:text-sm text-gray-400 mt-2">Services</p>
+                    <div class="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-spark-purple to-spark-cyan" data-target="98">98%</div>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-2">Client Satisfaction</p>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-spark-violet to-spark-cyan">PKR 300+</div>
-                    <p class="text-xs sm:text-sm text-gray-400 mt-2">Starting Price</p>
+                    <div class="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-spark-purple to-spark-cyan" data-target="2">2+</div>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-2">Years Experience</p>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl sm:text-4xl font-black text-spark-purple">5/5</div>
-                    <p class="text-xs sm:text-sm text-gray-400 mt-2">Client Rating</p>
+                    <div class="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-spark-purple to-spark-cyan" data-target="50">50+</div>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-2">Happy Clients</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Services Section -->
-    <section id="services" class="py-16 sm:py-24 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-spark-purple/5 to-transparent"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-12 sm:mb-20">
-                <h2 class="text-3xl sm:text-5xl font-black mb-4">WHAT WE CREATE</h2>
-                <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">Four services designed to amplify your brand and engage your audience</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                
-                <!-- Service 1: Thumbnails -->
-                <div class="service-card group p-6 sm:p-8 rounded-2xl border border-spark-purple/20 hover:border-spark-cyan/40 bg-spark-charcoal/40 backdrop-blur hover:bg-spark-charcoal/60 transition-all duration-300 cursor-pointer relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-spark-purple/10 via-transparent to-spark-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-spark-purple/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-spark-purple/40 transition">
-                            <i class="fas fa-image text-spark-purple text-xl"></i>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-bold mb-3">01 — THUMBNAIL DESIGN</h3>
-                        <p class="text-gray-400 text-sm sm:text-base mb-6">High-impact thumbnails designed to stop the scroll and make your content impossible to ignore.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">YouTube Thumbnails</span>
-                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">High CTR Design</span>
-                        </div>
-                        <button class="service-cta px-6 py-2 bg-spark-purple hover:bg-spark-violet text-white font-bold rounded-lg transition transform hover:scale-105 w-full sm:w-auto text-sm" onclick="openWhatsApp('thumbnail')">
-                            Order Thumbnail →
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service 2: Intro Videos -->
-                <div class="service-card group p-6 sm:p-8 rounded-2xl border border-spark-purple/20 hover:border-spark-cyan/40 bg-spark-charcoal/40 backdrop-blur hover:bg-spark-charcoal/60 transition-all duration-300 cursor-pointer relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-spark-purple/10 via-transparent to-spark-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-spark-cyan/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-spark-cyan/40 transition">
-                            <i class="fas fa-film text-spark-cyan text-xl"></i>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-bold mb-3">02 — INTRO VIDEOS</h3>
-                        <p class="text-gray-400 text-sm sm:text-base mb-6">Short cinematic intros that give your channel or brand a recognizable identity.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-spark-cyan/20 text-spark-cyan px-3 py-1 rounded-full">Motion Graphics</span>
-                            <span class="text-xs bg-spark-cyan/20 text-spark-cyan px-3 py-1 rounded-full">Logo Animation</span>
-                        </div>
-                        <button class="service-cta px-6 py-2 bg-spark-purple hover:bg-spark-violet text-white font-bold rounded-lg transition transform hover:scale-105 w-full sm:w-auto text-sm" onclick="openWhatsApp('intro')">
-                            Get an Intro →
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service 3: Landing Pages -->
-                <div class="service-card group p-6 sm:p-8 rounded-2xl border border-spark-purple/20 hover:border-spark-cyan/40 bg-spark-charcoal/40 backdrop-blur hover:bg-spark-charcoal/60 transition-all duration-300 cursor-pointer relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-spark-purple/10 via-transparent to-spark-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-spark-violet/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-spark-violet/40 transition">
-                            <i class="fas fa-window-maximize text-spark-violet text-xl"></i>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-bold mb-3">03 — LANDING PAGES</h3>
-                        <p class="text-gray-400 text-sm sm:text-base mb-6">Focused landing pages designed to present your product, service or personal brand professionally.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-spark-violet/20 text-spark-violet px-3 py-1 rounded-full">Responsive Design</span>
-                            <span class="text-xs bg-spark-violet/20 text-spark-violet px-3 py-1 rounded-full">Conversion Focused</span>
-                        </div>
-                        <button class="service-cta px-6 py-2 bg-spark-purple hover:bg-spark-violet text-white font-bold rounded-lg transition transform hover:scale-105 w-full sm:w-auto text-sm" onclick="openWhatsApp('landing')">
-                            Build My Landing Page →
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service 4: Websites -->
-                <div class="service-card group p-6 sm:p-8 rounded-2xl border border-spark-purple/20 hover:border-spark-cyan/40 bg-spark-charcoal/40 backdrop-blur hover:bg-spark-charcoal/60 transition-all duration-300 cursor-pointer relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-spark-purple/10 via-transparent to-spark-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-spark-purple/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-spark-purple/40 transition">
-                            <i class="fas fa-globe text-spark-purple text-xl"></i>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-bold mb-3">04 — WEBSITES</h3>
-                        <p class="text-gray-400 text-sm sm:text-base mb-6">Complete modern websites built around your brand, audience and goals.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">Full Stack</span>
-                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">SEO Ready</span>
-                        </div>
-                        <button class="service-cta px-6 py-2 bg-spark-purple hover:bg-spark-violet text-white font-bold rounded-lg transition transform hover:scale-105 w-full sm:w-auto text-sm" onclick="openWhatsApp('website')">
-                            Build My Website →
-                        </button>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-    
-    <!-- Featured Work / Portfolio -->
-    <section id="work" class="py-16 sm:py-24 relative border-t border-spark-purple/10">
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-12 sm:mb-20">
-                <h2 class="text-3xl sm:text-5xl font-black mb-4">WORK THAT SPEAKS BEFORE WE DO</h2>
-                <p class="text-gray-400 text-base sm:text-lg">A selection of projects that showcase our design and development expertise</p>
-            </div>
-            
-            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- Projects will be dynamically loaded here from projects.js -->
-            </div>
-            
-        </div>
-    </section>
-    
-    <!-- Why CreatorSpark -->
-    <section class="py-16 sm:py-24 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-spark-purple/5 via-transparent to-spark-cyan/5"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                
-                <div>
-                    <h2 class="text-3xl sm:text-4xl font-black mb-8">WHY CHOOSE CREATORSPARK</h2>
-                    
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-spark-purple/20">
-                                    <i class="fas fa-bolt text-spark-purple"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold">Fast Turnaround</h3>
-                                <p class="text-gray-400 text-sm mt-1">We move quickly without compromising quality. Your project moves fast.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-spark-cyan/20">
-                                    <i class="fas fa-users text-spark-cyan"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold">Local Understanding</h3>
-                                <p class="text-gray-400 text-sm mt-1">We're based in Pakistan and understand your market, language, and culture.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-spark-violet/20">
-                                    <i class="fas fa-wallet text-spark-violet"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold">Affordable Pricing</h3>
-                                <p class="text-gray-400 text-sm mt-1">Premium quality doesn't have to break the bank. We offer fair, transparent pricing.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0">
-                                <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-spark-purple/20">
-                                    <i class="fas fa-star text-spark-purple"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold">Premium Quality</h3>
-                                <p class="text-gray-400 text-sm mt-1">Every project receives full creative attention and professional polish.</p>
-                            </div>
+
+    <!-- Services Section with Images -->
+    <section id="services" class="section bg-spark-charcoal/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-black mb-4 text-center">What We Create</h2>
+            <p class="text-gray-400 text-center mb-16 text-lg max-w-2xl mx-auto">
+                From eye-catching thumbnails to complete digital experiences, we've got everything you need
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Thumbnails Service -->
+                <div class="card glass rounded-2xl overflow-hidden">
+                    <img 
+                        src="https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=600&q=80" 
+                        alt="YouTube thumbnail design" 
+                        class="service-image w-full h-64 object-cover"
+                    >
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">YouTube Thumbnails</h3>
+                        <p class="text-gray-300 mb-6">Eye-catching thumbnails that boost click-through rates and keep viewers engaged. Custom designs tailored to your brand.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">Design</span>
+                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">Branding</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="hidden md:block relative h-96 lg:h-[500px]">
-                    <div class="absolute inset-0 bg-gradient-to-br from-spark-purple/20 to-spark-cyan/20 rounded-3xl blur-2xl"></div>
-                    <div class="absolute inset-0 border border-spark-purple/30 rounded-3xl backdrop-blur-sm flex items-center justify-center">
-                        <div class="text-center">
-                            <i class="fas fa-check-circle text-6xl text-spark-cyan mb-4 opacity-50"></i>
-                            <p class="text-gray-400 text-sm">Your success is our mission</p>
+
+                <!-- Intro Videos Service -->
+                <div class="card glass rounded-2xl overflow-hidden">
+                    <img 
+                        src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&q=80" 
+                        alt="Video production" 
+                        class="service-image w-full h-64 object-cover"
+                    >
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">Intro Videos</h3>
+                        <p class="text-gray-300 mb-6">Professional intro videos that make a lasting first impression. Animated, dynamic, and perfectly on-brand for your channel.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">Video</span>
+                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">Animation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landing Pages Service -->
+                <div class="card glass rounded-2xl overflow-hidden">
+                    <img 
+                        src="https://images.unsplash.com/photo-1460925895917-aeb19be489c7?w=600&q=80" 
+                        alt="Landing page design" 
+                        class="service-image w-full h-64 object-cover"
+                    >
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">Landing Pages</h3>
+                        <p class="text-gray-300 mb-6">High-converting landing pages designed to turn visitors into customers. Optimized for speed, design, and conversions.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">Web Design</span>
+                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">Conversion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Websites Service -->
+                <div class="card glass rounded-2xl overflow-hidden">
+                    <img 
+                        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80" 
+                        alt="Website development" 
+                        class="service-image w-full h-64 object-cover"
+                    >
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">Websites</h3>
+                        <p class="text-gray-300 mb-6">Full-featured websites that represent your brand at its best. Responsive, fast, and built to grow with your business.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">Development</span>
+                            <span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">SEO</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Process Section -->
-    <section class="py-16 sm:py-24 relative border-t border-spark-purple/10">
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-12 sm:mb-20">
-                <h2 class="text-3xl sm:text-5xl font-black mb-4">OUR PROCESS</h2>
-                <p class="text-gray-400 text-base sm:text-lg">From idea to launch — streamlined and transparent</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
-                
-                <div class="relative">
-                    <div class="p-6 sm:p-8 rounded-2xl border border-spark-purple/20 hover:border-spark-cyan/40 bg-spark-charcoal/40 backdrop-blur transition-all duration-300 h-full">
-                        <div class="text-3xl font-black text-spark-purple mb-3">01</div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-3">DISCOVER</h3>
-                        <p class="text-gray-400 text-sm">We understand your idea, audience and goals through detailed discussion.</p>
-                    </div>
-                    <div class="hidden md:block absolute top-1/2 -right-8 w-8 h-1 bg-gradient-to-r from-spark-purple to-transparent"></div>
-                </div>
-                
-                <div class="relative">
-                    <div class="p-6 sm:p-8 rounded-2xl border border-spark-purple/20 hover:border-spark-cyan/40 bg-spark-charcoal/40 backdrop-blur transition-all duration-300 h-full">
-                        <div class="text-3xl font-black text-spark-cyan mb-3">02</div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-3">DESIGN</h3>
-                        <p class="text-gray-400 text-sm">We turn your idea into a strong visual concept with multiple iterations.</p>
-                    </div>
-                    <div class="hidden md:block absolute top-1/2 -right-8 w-8 h-1 bg-gradient-to-r from-spark-cyan to-transparent"></div>
-                </div>
-                
-                <div class="relative">
-                    <div class="p-6 sm:p-8 rounded-2xl border border-spark-purple/20 hover:border-spark-cyan/40 bg-spark-charcoal/40 backdrop-blur transition-all duration-300 h-full">
-                        <div class="text-3xl font-black text-spark-violet mb-3">03</div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-3">BUILD</h3>
-                        <p class="text-gray-400 text-sm">We create, refine and polish the final experience with precision.</p>
-                    </div>
-                    <div class="hidden md:block absolute top-1/2 -right-8 w-8 h-1 bg-gradient-to-r from-spark-violet to-transparent"></div>
-                </div>
-                
-                <div class="relative">
-                    <div class="p-6 sm:p-8 rounded-2xl border border-spark-purple/20 hover:border-spark-cyan/40 bg-spark-charcoal/40 backdrop-blur transition-all duration-300 h-full">
-                        <div class="text-3xl font-black text-spark-purple mb-3">04</div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-3">DELIVER</h3>
-                        <p class="text-gray-400 text-sm">You receive a professional, ready-to-use result with full support.</p>
-                    </div>
-                </div>
+
+    <!-- Portfolio Section with Project Images -->
+    <section id="work" class="section">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-black mb-4 text-center">Our Latest Work</h2>
+            <p class="text-gray-400 text-center mb-16 text-lg max-w-2xl mx-auto">
+                Check out some of our recent projects that exceeded expectations
+            </p>
+
+            <div class="project-grid" id="projects-container">
+                <!-- Projects loaded here via JavaScript -->
             </div>
         </div>
     </section>
-    
-    <!-- Permanent Client Offer -->
-    <section class="py-12 sm:py-16 relative border-t border-spark-purple/10">
-        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="relative overflow-hidden rounded-3xl border border-spark-cyan/40 bg-gradient-to-br from-spark-purple/20 via-spark-charcoal/40 to-spark-cyan/10 p-8 sm:p-12 text-center">
-                <div class="absolute inset-0 bg-gradient-to-r from-spark-purple/0 via-spark-cyan/5 to-spark-purple/0 opacity-50"></div>
-                <div class="relative z-10">
-                    <h3 class="text-2xl sm:text-4xl font-black mb-4">BUILD WITH US. STAY WITH US.</h3>
-                    <p class="text-gray-300 text-sm sm:text-base mb-8 max-w-2xl mx-auto">Permanent clients receive special offers, better package rates, and priority support. Build a long-term partnership with CreatorSpark.</p>
-                    <button class="px-8 py-3 bg-gradient-to-r from-spark-purple to-spark-violet hover:from-spark-violet hover:to-spark-purple text-white font-bold rounded-lg transition transform hover:scale-105" onclick="openWhatsApp('permanent')">
-                        Become a Permanent Client →
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-16 sm:py-24 relative border-t border-spark-purple/10">
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-12 sm:mb-20">
-                <h2 class="text-3xl sm:text-5xl font-black mb-4">PREMIUM WORK. HONEST PRICING.</h2>
-                <p class="text-gray-400 text-base sm:text-lg">Flexible packages designed for creators at every level</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
-                
-                <!-- Thumbnails -->
-                <div class="pricing-card p-6 sm:p-8 rounded-2xl border border-spark-purple/20 bg-spark-charcoal/40 backdrop-blur hover:border-spark-cyan/40 hover:bg-spark-charcoal/60 transition-all duration-300">
+
+    <!-- Pricing Section with Background -->
+    <section id="pricing" class="section bg-spark-charcoal/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-black mb-4 text-center">Simple Pricing</h2>
+            <p class="text-gray-400 text-center mb-16 text-lg max-w-2xl mx-auto">
+                Transparent pricing that scales with your needs
+            </p>
+
+            <!-- Background decorative image -->
+            <img 
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80" 
+                alt="Business growth" 
+                class="absolute -z-10 opacity-5 w-full"
+            >
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
+                <!-- Thumbnails Pricing -->
+                <div class="pricing-card glass p-6 sm:p-8 rounded-2xl">
                     <h3 class="text-lg font-bold mb-6">THUMBNAILS</h3>
                     <div class="space-y-4">
                         <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
                             <span class="text-gray-300">1 Thumbnail</span>
                             <span class="text-spark-purple font-bold">PKR 300</span>
                         </div>
-                        <div class="flex justify-between items-center py-3 pb-6 border-b border-spark-purple/10 bg-spark-purple/10 px-4 py-3 rounded-lg -mx-4 px-4">
-                            <span class="text-white font-bold">5 Thumbnails</span>
-                            <span class="text-spark-cyan font-black">PKR 1,000</span>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">5 Thumbnails</span>
+                            <span class="text-spark-purple font-bold">PKR 1,400</span>
                         </div>
-                        <div class="inline-block px-3 py-1 bg-spark-cyan/20 text-spark-cyan text-xs font-bold rounded">BEST VALUE</div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">10 Thumbnails</span>
+                            <span class="text-spark-purple font-bold">PKR 2,500</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Unlimited Bundle</span>
+                            <span class="text-spark-purple font-bold">PKR 5,000</span>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Intro Videos -->
-                <div class="pricing-card p-6 sm:p-8 rounded-2xl border border-spark-purple/20 bg-spark-charcoal/40 backdrop-blur hover:border-spark-cyan/40 hover:bg-spark-charcoal/60 transition-all duration-300">
+
+                <!-- Intro Videos Pricing -->
+                <div class="pricing-card glass p-6 sm:p-8 rounded-2xl">
                     <h3 class="text-lg font-bold mb-6">INTRO VIDEOS</h3>
                     <div class="space-y-4">
                         <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
-                            <span class="text-gray-300">1 Intro Video</span>
-                            <span class="text-spark-purple font-bold">PKR 500</span>
+                            <span class="text-gray-300">5-second Intro</span>
+                            <span class="text-spark-purple font-bold">PKR 1,500</span>
                         </div>
-                        <div class="flex justify-between items-center py-3 pb-6 border-b border-spark-purple/10 bg-spark-purple/10 px-4 py-3 rounded-lg -mx-4 px-4">
-                            <span class="text-white font-bold">5 Intro Videos</span>
-                            <span class="text-spark-cyan font-black">PKR 1,500</span>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">10-second Intro</span>
+                            <span class="text-spark-purple font-bold">PKR 2,500</span>
                         </div>
-                        <div class="inline-block px-3 py-1 bg-spark-violet/20 text-spark-violet text-xs font-bold rounded">POPULAR</div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Custom Animation</span>
+                            <span class="text-spark-purple font-bold">PKR 4,000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Package (3x)</span>
+                            <span class="text-spark-purple font-bold">PKR 6,000</span>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Landing Pages -->
-                <div class="pricing-card p-6 sm:p-8 rounded-2xl border border-spark-purple/20 bg-spark-charcoal/40 backdrop-blur hover:border-spark-cyan/40 hover:bg-spark-charcoal/60 transition-all duration-300">
+
+                <!-- Landing Pages Pricing -->
+                <div class="pricing-card glass p-6 sm:p-8 rounded-2xl border-2 border-spark-purple">
                     <h3 class="text-lg font-bold mb-6">LANDING PAGES</h3>
                     <div class="space-y-4">
-                        <div class="py-3 border-b border-spark-purple/10">
-                            <span class="text-gray-300 text-sm">Professional Landing Page</span>
-                            <div class="text-spark-purple font-bold mt-2">PKR 3,000 – 8,000+</div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Basic Landing</span>
+                            <span class="text-spark-purple font-bold">PKR 5,000</span>
                         </div>
-                        <p class="text-gray-400 text-xs pt-4">Pricing depends on design complexity and features.</p>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Standard Page</span>
+                            <span class="text-spark-purple font-bold">PKR 8,000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Premium Design</span>
+                            <span class="text-spark-purple font-bold">PKR 12,000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Full Campaign</span>
+                            <span class="text-spark-purple font-bold">PKR 18,000</span>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Websites -->
-                <div class="pricing-card p-6 sm:p-8 rounded-2xl border border-spark-purple/20 bg-spark-charcoal/40 backdrop-blur hover:border-spark-cyan/40 hover:bg-spark-charcoal/60 transition-all duration-300">
+
+                <!-- Websites Pricing -->
+                <div class="pricing-card glass p-6 sm:p-8 rounded-2xl">
                     <h3 class="text-lg font-bold mb-6">WEBSITES</h3>
                     <div class="space-y-4">
-                        <div class="py-3 border-b border-spark-purple/10">
-                            <span class="text-gray-300 text-sm">Professional Website</span>
-                            <div class="text-spark-purple font-bold mt-2">PKR 5,000 – 20,000+</div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Portfolio Site</span>
+                            <span class="text-spark-purple font-bold">PKR 15,000</span>
                         </div>
-                        <p class="text-gray-400 text-xs pt-4">Website pricing depends on page count, complexity, features and animations.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <p class="text-gray-400 text-sm sm:text-base mb-6">Have custom requirements? Let's discuss your project.</p>
-                <button class="px-8 py-3 bg-spark-purple hover:bg-spark-violet text-white font-bold rounded-lg transition transform hover:scale-105" onclick="openWhatsApp('quote')">
-                    Get a Custom Quote →
-                </button>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Client Reviews -->
-    <section id="reviews" class="py-16 sm:py-24 relative border-t border-spark-purple/10">
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-12 sm:mb-20">
-                <h2 class="text-3xl sm:text-5xl font-black mb-4">WHAT CLIENTS SAY</h2>
-                <p class="text-gray-400 text-base sm:text-lg">Real feedback from creators and businesses we've worked with</p>
-            </div>
-            
-            <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
-                <!-- Reviews will be dynamically loaded here from reviews.js -->
-            </div>
-            
-            <div class="text-center">
-                <p class="text-gray-400 text-sm sm:text-base">Help us improve — share your experience</p>
-                <button class="mt-4 px-6 py-2 border border-spark-purple/40 hover:border-spark-cyan text-white font-bold rounded-lg transition" onclick="document.getElementById('review-form-section').scrollIntoView({ behavior: 'smooth' })">
-                    Submit Your Review ↓
-                </button>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Review Submission -->
-    <section id="review-form-section" class="py-16 sm:py-24 relative border-t border-spark-purple/10">
-        <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-12">
-                <h2 class="text-3xl sm:text-4xl font-black mb-4">SHARE YOUR EXPERIENCE</h2>
-                <p class="text-gray-400 text-base">Your feedback helps us serve you better and helps others discover our work</p>
-            </div>
-            
-            <div class="p-6 sm:p-8 rounded-2xl border border-spark-purple/20 bg-spark-charcoal/40 backdrop-blur">
-                <form id="review-form" class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <input 
-                            type="text" 
-                            id="review-name" 
-                            placeholder="Your Name" 
-                            class="px-4 py-3 rounded-lg bg-spark-charcoal border border-spark-purple/20 text-white placeholder-gray-500 focus:border-spark-cyan focus:outline-none transition"
-                            required
-                        >
-                        <input 
-                            type="text" 
-                            id="review-role" 
-                            placeholder="Your Role / Channel / Business" 
-                            class="px-4 py-3 rounded-lg bg-spark-charcoal border border-spark-purple/20 text-white placeholder-gray-500 focus:border-spark-cyan focus:outline-none transition"
-                            required
-                        >
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-bold mb-3">Rating</label>
-                        <div class="flex gap-2">
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="rating" value="5" class="w-4 h-4" required> <span class="text-sm">⭐⭐⭐⭐⭐ (5 Stars)</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="rating" value="4" class="w-4 h-4"> <span class="text-sm">⭐⭐⭐⭐ (4 Stars)</span>
-                            </label>
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="rating" value="3" class="w-4 h-4"> <span class="text-sm">⭐⭐⭐ (3 Stars)</span>
-                            </label>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Business Site</span>
+                            <span class="text-spark-purple font-bold">PKR 25,000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">E-Commerce</span>
+                            <span class="text-spark-purple font-bold">PKR 40,000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-spark-purple/10">
+                            <span class="text-gray-300">Custom Solution</span>
+                            <span class="text-spark-purple font-bold">PKR 50,000+</span>
                         </div>
                     </div>
-                    
-                    <textarea 
-                        id="review-text" 
-                        placeholder="Tell us about your experience with CreatorSpark Studio..." 
-                        rows="5"
-                        class="w-full px-4 py-3 rounded-lg bg-spark-charcoal border border-spark-purple/20 text-white placeholder-gray-500 focus:border-spark-cyan focus:outline-none transition resize-none"
-                        required
-                    ></textarea>
-                    
-                    <div class="bg-spark-purple/10 border border-spark-purple/20 rounded-lg p-4 text-sm text-gray-300">
-                        ℹ️ <strong>Note:</strong> Reviews are manually verified before appearing on the website. We'll contact you via WhatsApp or email for confirmation.
-                    </div>
-                    
-                    <button type="submit" class="w-full px-6 py-3 bg-spark-purple hover:bg-spark-violet text-white font-bold rounded-lg transition transform hover:scale-105">
-                        Submit Review
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-    
-    <!-- FAQ Section -->
-    <section class="py-16 sm:py-24 relative border-t border-spark-purple/10">
-        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-12 sm:mb-20">
-                <h2 class="text-3xl sm:text-5xl font-black mb-4">FREQUENTLY ASKED QUESTIONS</h2>
-                <p class="text-gray-400 text-base sm:text-lg">Everything you need to know about working with CreatorSpark</p>
-            </div>
-            
-            <div class="space-y-4">
-                <div class="faq-item">
-                    <button class="w-full flex justify-between items-center p-5 sm:p-6 rounded-lg border border-spark-purple/20 bg-spark-charcoal/40 hover:bg-spark-charcoal/60 transition-all text-left font-bold text-base sm:text-lg">
-                        <span>How do I order a service?</span>
-                        <span class="faq-icon text-spark-cyan transition transform">+</span>
-                    </button>
-                    <div class="faq-content hidden px-5 sm:px-6 py-4 text-gray-400 text-sm sm:text-base">
-                        Click "Order" on any service card or use the WhatsApp button to message us. Describe your project, and we'll discuss details, timeline, and pricing with you.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="w-full flex justify-between items-center p-5 sm:p-6 rounded-lg border border-spark-purple/20 bg-spark-charcoal/40 hover:bg-spark-charcoal/60 transition-all text-left font-bold text-base sm:text-lg">
-                        <span>How long does a project take?</span>
-                        <span class="faq-icon text-spark-cyan transition transform">+</span>
-                    </button>
-                    <div class="faq-content hidden px-5 sm:px-6 py-4 text-gray-400 text-sm sm:text-base">
-                        Timelines vary: Thumbnails (1-2 days), Intros (3-5 days), Landing Pages (5-10 days), Websites (2-4 weeks). We'll confirm your deadline when discussing your project.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="w-full flex justify-between items-center p-5 sm:p-6 rounded-lg border border-spark-purple/20 bg-spark-charcoal/40 hover:bg-spark-charcoal/60 transition-all text-left font-bold text-base sm:text-lg">
-                        <span>Can I request revisions?</span>
-                        <span class="faq-icon text-spark-cyan transition transform">+</span>
-                    </button>
-                    <div class="faq-content hidden px-5 sm:px-6 py-4 text-gray-400 text-sm sm:text-base">
-                        Yes. All our packages include revision rounds. We refine your project until you're happy with the result. Unlimited revisions for permanent clients.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="w-full flex justify-between items-center p-5 sm:p-6 rounded-lg border border-spark-purple/20 bg-spark-charcoal/40 hover:bg-spark-charcoal/60 transition-all text-left font-bold text-base sm:text-lg">
-                        <span>Do you work with Pakistani clients?</span>
-                        <span class="faq-icon text-spark-cyan transition transform">+</span>
-                    </button>
-                    <div class="faq-content hidden px-5 sm:px-6 py-4 text-gray-400 text-sm sm:text-base">
-                        Absolutely! We're based in Pakistan and specialize in working with Pakistani creators, YouTubers, businesses, and startups. We understand your market and speak your language.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="w-full flex justify-between items-center p-5 sm:p-6 rounded-lg border border-spark-purple/20 bg-spark-charcoal/40 hover:bg-spark-charcoal/60 transition-all text-left font-bold text-base sm:text-lg">
-                        <span>How much does a website really cost?</span>
-                        <span class="faq-icon text-spark-cyan transition transform">+</span>
-                    </button>
-                    <div class="faq-content hidden px-5 sm:px-6 py-4 text-gray-400 text-sm sm:text-base">
-                        Website pricing starts at PKR 5,000 and goes up depending on complexity. A simple business website costs ~PKR 5,000-8,000. Advanced websites with animations cost PKR 10,000-20,000+. We offer custom quotes for your needs.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="w-full flex justify-between items-center p-5 sm:p-6 rounded-lg border border-spark-purple/20 bg-spark-charcoal/40 hover:bg-spark-charcoal/60 transition-all text-left font-bold text-base sm:text-lg">
-                        <span>What's a "permanent client"?</span>
-                        <span class="faq-icon text-spark-cyan transition transform">+</span>
-                    </button>
-                    <div class="faq-content hidden px-5 sm:px-6 py-4 text-gray-400 text-sm sm:text-base">
-                        A permanent client is a long-term partner. You get better package rates, priority support, and special offers on future projects. It's a partnership where we grow together.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="w-full flex justify-between items-center p-5 sm:p-6 rounded-lg border border-spark-purple/20 bg-spark-charcoal/40 hover:bg-spark-charcoal/60 transition-all text-left font-bold text-base sm:text-lg">
-                        <span>Can you build a custom website?</span>
-                        <span class="faq-icon text-spark-cyan transition transform">+</span>
-                    </button>
-                    <div class="faq-content hidden px-5 sm:px-6 py-4 text-gray-400 text-sm sm:text-base">
-                        Yes. We build fully custom websites tailored to your brand, goals, and audience. No templates. We'll discuss your vision and deliver something unique.
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="w-full flex justify-between items-center p-5 sm:p-6 rounded-lg border border-spark-purple/20 bg-spark-charcoal/40 hover:bg-spark-charcoal/60 transition-all text-left font-bold text-base sm:text-lg">
-                        <span>How do I contact CreatorSpark Studio?</span>
-                        <span class="faq-icon text-spark-cyan transition transform">+</span>
-                    </button>
-                    <div class="faq-content hidden px-5 sm:px-6 py-4 text-gray-400 text-sm sm:text-base">
-                        WhatsApp: +923460286244 | Email: creatorsparkstudio99@gmail.com | Use the WhatsApp buttons throughout the website for the fastest response.
-                    </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Final CTA -->
-    <section id="contact" class="py-16 sm:py-24 relative border-t border-spark-purple/10">
-        <div class="absolute inset-0 bg-gradient-to-b from-spark-purple/10 via-transparent to-spark-cyan/5"></div>
-        <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            
-            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black mb-6">YOUR NEXT PROJECT DESERVES BETTER</h2>
-            <p class="text-gray-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">Tell us what you're building. We'll help turn it into something worth remembering.</p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button class="px-8 py-4 bg-gradient-to-r from-spark-purple to-spark-violet hover:from-spark-violet hover:to-spark-purple text-white font-bold rounded-lg transition transform hover:scale-105 text-base sm:text-lg" onclick="openWhatsApp('final')">
-                    Chat on WhatsApp ↗
-                </button>
-                <a href="mailto:creatorsparkstudio99@gmail.com" class="px-8 py-4 border border-spark-cyan/40 hover:border-spark-cyan text-white font-bold rounded-lg transition hover:bg-spark-cyan/10 text-base sm:text-lg">
-                    Send Email ✉️
-                </a>
-            </div>
-            
-            <div class="mt-12 sm:mt-16 pt-8 border-t border-spark-purple/10">
-                <p class="text-gray-500 text-sm">Quick responses during business hours: 10 AM - 10 PM PKT</p>
+
+    <!-- Reviews Section with Images -->
+    <section id="reviews" class="section">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-black mb-4 text-center">What Clients Say</h2>
+            <p class="text-gray-400 text-center mb-16 text-lg max-w-2xl mx-auto">
+                Don't just take our word for it — hear from our satisfied clients
+            </p>
+
+            <!-- Background decorative image -->
+            <img 
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80" 
+                alt="Success stories" 
+                class="absolute -z-10 opacity-5 w-full"
+            >
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10" id="reviews-container">
+                <!-- Reviews loaded via JavaScript -->
             </div>
         </div>
     </section>
-    
+
+    <!-- FAQ Section with Background -->
+    <section class="section bg-spark-charcoal/50">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-black mb-4 text-center">FAQ</h2>
+            <p class="text-gray-400 text-center mb-16 text-lg">
+                Got questions? We have answers
+            </p>
+
+            <img 
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80" 
+                alt="Support team" 
+                class="absolute -z-10 opacity-5 w-full"
+            >
+
+            <div class="relative z-10 space-y-3" id="faq-container">
+                <!-- FAQ items loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section with Background Image -->
+    <section class="relative py-20 overflow-hidden">
+        <img 
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80" 
+            alt="Let's create together" 
+            class="absolute inset-0 w-full h-full object-cover opacity-20"
+        >
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-4xl sm:text-5xl font-black mb-6">
+                Ready to Make Your Mark?
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+                Let's work together to create something extraordinary. WhatsApp us now and let's start your transformation.
+            </p>
+            <button class="btn-primary px-10 py-4 rounded-lg text-white font-bold text-lg">
+                Chat on WhatsApp →
+            </button>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="border-t border-spark-purple/10 bg-spark-charcoal/40 backdrop-blur py-12 sm:py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 sm:mb-12">
-                
+    <footer class="bg-spark-dark py-16 border-t border-spark-purple/20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div>
-                    <h3 class="font-bold mb-4">CREATORSPARK STUDIO</h3>
-                    <p class="text-gray-400 text-sm">Building digital experiences that make brands stand out.</p>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4 text-sm">SERVICES</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#services" class="hover:text-spark-cyan transition">Thumbnails</a></li>
-                        <li><a href="#services" class="hover:text-spark-cyan transition">Intro Videos</a></li>
-                        <li><a href="#services" class="hover:text-spark-cyan transition">Landing Pages</a></li>
-                        <li><a href="#services" class="hover:text-spark-cyan transition">Websites</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4 text-sm">CONTACT</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-whatsapp text-spark-cyan"></i>
-                            <a href="https://wa.me/923460286244" target="_blank" class="hover:text-spark-cyan transition">+923460286244</a>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fas fa-envelope text-spark-cyan"></i>
-                            <a href="mailto:creatorsparkstudio99@gmail.com" class="hover:text-spark-cyan transition">Email Us</a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4 text-sm">FOLLOW</h4>
-                    <div class="flex gap-4">
-                        <a href="https://instagram.com" target="_blank" class="w-8 h-8 flex items-center justify-center rounded-lg border border-spark-purple/20 hover:border-spark-cyan hover:text-spark-cyan transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://youtube.com" target="_blank" class="w-8 h-8 flex items-center justify-center rounded-lg border border-spark-purple/20 hover:border-spark-cyan hover:text-spark-cyan transition">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://facebook.com" target="_blank" class="w-8 h-8 flex items-center justify-center rounded-lg border border-spark-purple/20 hover:border-spark-cyan hover:text-spark-cyan transition">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" class="w-8 h-8 flex items-center justify-center rounded-lg border border-spark-purple/20 hover:border-spark-cyan hover:text-spark-cyan transition">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-xl font-black">CreatorSpark</span>
+                        <span class="text-xl font-black gradient-text">Studio</span>
                     </div>
+                    <p class="text-gray-400 text-sm">
+                        Transforming digital presence through creative excellence.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#services" class="hover:text-spark-purple transition">Thumbnails</a></li>
+                        <li><a href="#services" class="hover:text-spark-purple transition">Videos</a></li>
+                        <li><a href="#services" class="hover:text-spark-purple transition">Landing Pages</a></li>
+                        <li><a href="#services" class="hover:text-spark-purple transition">Websites</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#work" class="hover:text-spark-purple transition">Our Work</a></li>
+                        <li><a href="#reviews" class="hover:text-spark-purple transition">Reviews</a></li>
+                        <li><a href="#pricing" class="hover:text-spark-purple transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-spark-purple transition">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-spark-purple transition">Instagram</a></li>
+                        <li><a href="#" class="hover:text-spark-purple transition">YouTube</a></li>
+                        <li><a href="#" class="hover:text-spark-purple transition">Facebook</a></li>
+                        <li><a href="#" class="hover:text-spark-purple transition">LinkedIn</a></li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="border-t border-spark-purple/10 pt-8 text-center text-gray-500 text-xs sm:text-sm">
-                <p>© 2026 CreatorSpark Studio. All rights reserved. Built with ⚡ for creators.</p>
+            <div class="border-t border-spark-purple/20 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © 2024 CreatorSpark Studio. All rights reserved.
+                </p>
+                <div class="flex gap-8 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-spark-purple transition text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-spark-purple transition text-sm">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
-    
+
+    <!-- Scripts -->
     <script src="projects.js"></script>
     <script src="reviews.js"></script>
     <script src="script.js"></script>
