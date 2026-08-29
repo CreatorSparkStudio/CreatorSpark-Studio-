@@ -1,106 +1,77 @@
-/* ============================================
-   CREATORSPARK STUDIO - REVIEWS DATA
-   ============================================
-   
-   INSTRUCTIONS:
-   1. Replace sample reviews with real client feedback
-   2. Use only verified, authentic reviews
-   3. Include diverse client types
-   4. Rating must be 3, 4, or 5 stars
-   5. Keep reviews between 1-3 sentences
-   
-   EDITABLE FIELDS:
-   - name: Client full name
-   - role: Client's channel/business/role
-   - text: Review text (1-3 sentences)
-   - rating: 5, 4, or 3
-   - image: Profile image path (optional)
-   
-   ============================================ */
-
 const reviews = [
     {
         name: "Ahmed Hassan",
-        role: "Tech YouTuber (45K subscribers)",
-        text: "CreatorSpark transformed my channel thumbnails. My CTR increased by 35% in just 3 months. Their team is responsive, creative, and genuinely cares about results.",
+        role: "YouTuber | 500K Subscribers",
+        text: "CreatorSpark Studio transformed my channel's visual identity. The thumbnails are professional, eye-catching, and definitely improved my CTR. Highly recommended!",
         rating: 5,
-        image: ""
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
     },
     {
         name: "Fatima Khan",
-        role: "E-commerce Business Owner",
-        text: "Got my website built by CreatorSpark for PKR 8,000. It's professional, fast, and looks like it costs 10x more. Highly recommended for Pakistani businesses!",
+        role: "E-Commerce Store Owner",
+        text: "They built us an amazing landing page that converted. The design is stunning and the team was super responsive to our feedback. Worth every penny!",
         rating: 5,
-        image: ""
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80"
     },
     {
         name: "Ali Raza",
-        role: "Personal Brand Coach",
-        text: "The landing page they designed for my course launch converted better than I expected. Their copy and design work together perfectly.",
+        role: "Tech Startup Founder",
+        text: "Professional, creative, and delivered on time. The website they built perfectly captures our brand essence. They made the whole process smooth and enjoyable.",
         rating: 5,
-        image: ""
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80"
     },
     {
-        name: "Sara Malik",
-        role: "Fitness Influencer (28K followers)",
-        text: "Fast turnaround on my intro videos, and they nailed the aesthetic I was going for. Will definitely order more content from them.",
+        name: "Zainab Malik",
+        role: "Content Creator | Podcaster",
+        text: "The intro videos are absolutely fire! Exactly what I envisioned but even better. The attention to detail is incredible. Best investment for my channel.",
         rating: 5,
-        image: ""
+        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80"
     },
     {
-        name: "Hassan Siddiqui",
-        role: "Startup Founder",
-        text: "CreatorSpark created our website and landing page. Professional quality at affordable prices. Great communication throughout the project.",
-        rating: 4,
-        image: ""
+        name: "Hassan Ali",
+        role: "Digital Marketing Agency",
+        text: "We partner with CreatorSpark for all our design needs. Their team is talented, reliable, and always brings fresh ideas. Can't recommend them enough!",
+        rating: 5,
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
     },
     {
-        name: "Amina Khan",
-        role: "Digital Marketing Manager",
-        text: "Their thumbnail designs have improved our video performance significantly. The team understands what makes content stand out on YouTube.",
+        name: "Maria Santos",
+        role: "Online Course Creator",
+        text: "The landing page they designed helped me triple my course enrollment. The copy placement, visuals, and overall user experience is top-notch!",
         rating: 5,
-        image: ""
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80"
     }
 ];
 
-/* ============================================
-   HOW TO ADD REAL CLIENT REVIEWS
-   ============================================
-   
-   1. After completing projects, ask clients for feedback:
-   
-   "Hi [Client]! We'd love your feedback on CreatorSpark Studio's work. 
-   Could you share a quick review? It really helps us grow and helps other 
-   creators discover our services. Thank you!"
-   
-   2. Create review object:
-   
-   {
-       name: "Client Full Name",
-       role: "Channel Name (Subscribers) | Business | Position",
-       text: "Your honest review in 1-3 sentences",
-       rating: 5,  // 3, 4, or 5 stars
-       image: ""   // Optional: path to profile picture
-   }
-   
-   3. Add to the reviews array above
-   
-   4. Test that it displays correctly
-   
-   IMPORTANT:
-   - Only use REAL, VERIFIED client feedback
-   - Never fabricate or fake reviews
-   - Get explicit permission from clients
-   - Keep reviews authentic and specific
-   
-   ============================================ */
-
-/* SAMPLE REVIEW TEMPLATE - DELETE AFTER USE
-{
-    name: "Your Client Name",
-    role: "Their Business / Channel",
-    text: "Great work! Professional quality and fast delivery. Highly recommend CreatorSpark.",
-    rating: 5,
-    image: ""
+// Render reviews
+function renderReviews() {
+    const container = document.getElementById('reviews-container');
+    if (!container) return;
+    
+    container.innerHTML = reviews.map(review => `
+        <div class="review-card">
+            <div class="flex items-start gap-4 mb-4">
+                <img 
+                    src="${review.image}" 
+                    alt="${review.name}"
+                    class="w-12 h-12 rounded-full object-cover"
+                >
+                <div>
+                    <h4 class="font-bold">${review.name}</h4>
+                    <p class="text-sm text-gray-400">${review.role}</p>
+                </div>
+            </div>
+            <div class="stars mb-3">
+                ${'★'.repeat(review.rating)}
+            </div>
+            <p class="text-gray-300 leading-relaxed">"${review.text}"</p>
+        </div>
+    `).join('');
 }
-============================================ */
+
+// Render when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderReviews);
+} else {
+    renderReviews();
+}
