@@ -1,100 +1,105 @@
-/* ============================================
-   CREATORSPARK STUDIO - PROJECTS DATA
-   ============================================
-   
-   INSTRUCTIONS:
-   1. Replace project data below with your actual projects
-   2. Add thumbnail images to assets/projects/ folder
-   3. Each project should have all required fields
-   4. Status is optional (leave empty for no label)
-   
-   EDITABLE FIELDS:
-   - title: Project name
-   - category: Service type
-   - description: Short project description
-   - technologies: Array of tools/skills used
-   - image: Path to project image (assets/projects/image.jpg)
-   - link: URL to view project (optional)
-   - status: "Concept Project" or leave empty
-   
-   ============================================ */
-
 const projects = [
     {
-        title: "Creator Portfolio Website",
+        title: "Tech Startup Landing Page",
         category: "Website",
-        description: "A modern portfolio website for a popular Pakistani YouTuber with 50K+ subscribers. Features smooth animations, project showcase, and direct contact integration.",
-        technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-        image: "assets/projects/creator-portfolio.jpg",
-        link: "https://example.com/project1",
-        status: "Concept Project"
+        description: "High-converting landing page for a SaaS startup",
+        technologies: ["React", "Tailwind", "Animation"],
+        image: "https://images.unsplash.com/photo-1460925895917-aeb19be489c7?w=600&q=80",
+        link: "#",
+        status: ""
     },
     {
-        title: "YouTube Thumbnail Campaign",
+        title: "YouTube Channel Branding",
         category: "Thumbnails",
-        description: "High-converting thumbnail design series for a tech channel. Each design tested for visual hierarchy, color psychology, and CTR optimization.",
-        technologies: ["Design", "Figma", "YouTube Analytics"],
-        image: "assets/projects/thumbnail-campaign.jpg",
-        link: "https://example.com/project2",
-        status: "Concept Project"
+        description: "Complete thumbnail design package with consistent branding",
+        technologies: ["Design", "Branding"],
+        image: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=600&q=80",
+        link: "#",
+        status: ""
     },
     {
-        title: "Startup Landing Page",
-        category: "Landing Page",
-        description: "Conversion-focused landing page for a Pakistani startup. Designed to capture leads with compelling copy, social proof, and strategic CTAs.",
-        technologies: ["Web Design", "Conversion Optimization", "UX/UI"],
-        image: "assets/projects/startup-landing.jpg",
-        link: "https://example.com/project3",
-        status: "Concept Project"
-    },
-    {
-        title: "Restaurant Website",
+        title: "E-Commerce Website",
         category: "Website",
-        description: "Full-featured restaurant website with menu, reservation system, and location integration. Mobile-first design for local customers.",
-        technologies: ["Web Development", "Responsive", "Backend Integration"],
-        image: "assets/projects/restaurant-website.jpg",
-        link: "https://example.com/project4",
-        status: "Concept Project"
+        description: "Full-featured e-commerce platform with payment integration",
+        technologies: ["Node.js", "MongoDB", "Stripe"],
+        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80",
+        link: "#",
+        status: ""
     },
     {
-        title: "Personal Brand Website",
+        title: "Cinematic Intro Video",
+        category: "Video",
+        description: "Professional intro video with 3D animation and effects",
+        technologies: ["After Effects", "3D", "Animation"],
+        image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&q=80",
+        link: "#",
+        status: ""
+    },
+    {
+        title: "Corporate Website Redesign",
         category: "Website",
-        description: "Elegant personal brand site for a professional coach. Showcases services, testimonials, and booking integration.",
-        technologies: ["Web Design", "Portfolio", "CMS"],
-        image: "assets/projects/personal-brand.jpg",
-        link: "https://example.com/project5",
-        status: "Concept Project"
+        description: "Modern corporate website with updated branding and UI",
+        technologies: ["Vue.js", "GSAP", "WebGL"],
+        image: "https://images.unsplash.com/photo-1499941354192-b716a3b13e8d?w=600&q=80",
+        link: "#",
+        status: ""
     },
     {
-        title: "YouTube Intro Animation",
-        category: "Intro Videos",
-        description: "Professional 5-second intro animation with logo reveal and motion graphics. Ready for YouTube channel branding.",
-        technologies: ["Motion Graphics", "Animation", "After Effects"],
-        image: "assets/projects/youtube-intro.jpg",
-        link: "https://example.com/project6",
-        status: "Concept Project"
+        title: "Podcast Cover Design",
+        category: "Design",
+        description: "Custom podcast artwork and thumbnail designs",
+        technologies: ["Design", "Branding"],
+        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80",
+        link: "#",
+        status: ""
     }
 ];
 
-/* ============================================
-   HOW TO ADD YOUR OWN PROJECTS
-   ============================================
-   
-   1. Create an object with all fields:
-   
-   {
-       title: "Project Name",
-       category: "Website" | "Thumbnails" | "Intro Videos" | "Landing Page",
-       description: "Brief description (1-2 sentences)",
-       technologies: ["Tech1", "Tech2", "Tech3"],
-       image: "assets/projects/image.jpg",
-       link: "https://yourproject.com",
-       status: "Concept Project" or ""
-   }
-   
-   2. Add your image to the assets/projects/ folder
-   3. Update the link to point to your actual project
-   4. Remove "Concept Project" status when project is live
-   5. Test that all links work correctly
-   
-   ============================================ */
+// Render projects
+function renderProjects() {
+    const container = document.getElementById('projects-container');
+    container.innerHTML = projects.map(project => `
+        <div class="card glass rounded-2xl overflow-hidden cursor-pointer group">
+            <div class="relative overflow-hidden h-64">
+                <img 
+                    src="${project.image}" 
+                    alt="${project.title}"
+                    class="project-image w-full h-full"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-spark-dark to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">${project.title}</h3>
+                        <p class="text-gray-300 text-sm mb-4">${project.description}</p>
+                        <div class="flex gap-2 flex-wrap">
+                            ${project.technologies.map(tech => 
+                                `<span class="text-xs bg-spark-purple/30 text-spark-purple px-2 py-1 rounded">${tech}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h3 class="text-lg font-bold">${project.title}</h3>
+                        <p class="text-spark-cyan text-sm mt-1">${project.category}</p>
+                    </div>
+                    ${project.status ? `<span class="text-xs bg-spark-purple/20 text-spark-purple px-3 py-1 rounded-full">${project.status}</span>` : ''}
+                </div>
+                <p class="text-gray-400 text-sm mb-4">${project.description}</p>
+                <div class="flex gap-2 flex-wrap">
+                    ${project.technologies.map(tech => 
+                        `<span class="text-xs bg-spark-purple/20 text-spark-purple px-2 py-1 rounded">${tech}</span>`
+                    ).join('')}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Render when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderProjects);
+} else {
+    renderProjects();
+}
